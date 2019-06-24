@@ -1,6 +1,6 @@
 # The following dependencies were calculated from:
 #
-# generate_workspace --artifact=com.github.twitch4j:twitch4j:v0.12.0 --repositories=https://jcenter.bintray.com
+# generate_workspace --artifact=com.github.twitch4j:twitch4j:v0.12.0 --artifact=com.github.philippheuer.credentialmanager:credentialmanager:0.0.31 --repositories=https://jcenter.bintray.com
 
 
 def generated_maven_jars():
@@ -127,6 +127,15 @@ def generated_maven_jars():
   )
 
 
+  # com.squareup.okhttp3:okhttp:jar:3.11.0
+  native.maven_jar(
+      name = "com_squareup_okio_okio",
+      artifact = "com.squareup.okio:okio:1.14.0",
+      repository = "https://jcenter.bintray.com/",
+      sha1 = "102d7be47241d781ef95f1581d414b0943053130",
+  )
+
+
   # io.ratpack:ratpack-core:jar:1.5.4
   native.maven_jar(
       name = "com_fasterxml_jackson_datatype_jackson_datatype_jsr310",
@@ -148,6 +157,14 @@ def generated_maven_jars():
   )
 
 
+  native.maven_jar(
+      name = "com_github_philippheuer_credentialmanager_credentialmanager",
+      artifact = "com.github.philippheuer.credentialmanager:credentialmanager:0.0.31",
+      repository = "https://jcenter.bintray.com/",
+      sha1 = "a44142cfd7cd22aa601df42946fc3f7991ae3d97",
+  )
+
+
   # io.ratpack:ratpack-exec:jar:1.5.4
   native.maven_jar(
       name = "io_netty_netty_transport_native_epoll",
@@ -160,6 +177,7 @@ def generated_maven_jars():
   # io.ratpack:ratpack-base:jar:1.5.4
   # io.ratpack:ratpack-exec:jar:1.5.4 got requested version
   # com.github.twitch4j:twitch4j:jar:v0.12.0 got requested version
+  # com.github.philippheuer.credentialmanager:credentialmanager:jar:0.0.31 got requested version
   native.maven_jar(
       name = "org_slf4j_slf4j_api",
       artifact = "org.slf4j:slf4j-api:1.7.25",
@@ -268,9 +286,19 @@ def generated_maven_jars():
   )
 
 
+  # com.github.philippheuer.credentialmanager:credentialmanager:jar:0.0.31
+  native.maven_jar(
+      name = "com_squareup_okhttp3_okhttp",
+      artifact = "com.squareup.okhttp3:okhttp:3.11.0",
+      repository = "https://jcenter.bintray.com/",
+      sha1 = "75966e05a49046ca2ae734e5626f28837a8d1e82",
+  )
+
+
   # com.github.twitch4j:twitch4j:jar:v0.12.0 wanted version 2.9.6
   # com.fasterxml.jackson.datatype:jackson-datatype-guava:bundle:2.9.4 got requested version
   # io.ratpack:ratpack-core:jar:1.5.4
+  # com.github.philippheuer.credentialmanager:credentialmanager:jar:0.0.31 wanted version 2.9.7
   # com.fasterxml.jackson.datatype:jackson-datatype-jdk8:bundle:2.9.4 got requested version
   # com.fasterxml.jackson.datatype:jackson-datatype-jsr310:bundle:2.9.4 got requested version
   native.maven_jar(
@@ -301,6 +329,7 @@ def generated_maven_jars():
 
 
   # com.github.twitch4j:twitch4j:jar:v0.12.0
+  # com.github.philippheuer.credentialmanager:credentialmanager:jar:0.0.31 wanted version 3.8.1
   native.maven_jar(
       name = "org_apache_commons_commons_lang3",
       artifact = "org.apache.commons:commons-lang3:3.7",
@@ -551,6 +580,13 @@ def generated_java_libraries():
 
 
   native.java_library(
+      name = "com_squareup_okio_okio",
+      visibility = ["//visibility:public"],
+      exports = ["@com_squareup_okio_okio//jar"],
+  )
+
+
+  native.java_library(
       name = "com_fasterxml_jackson_datatype_jackson_datatype_jsr310",
       visibility = ["//visibility:public"],
       exports = ["@com_fasterxml_jackson_datatype_jackson_datatype_jsr310//jar"],
@@ -566,6 +602,20 @@ def generated_java_libraries():
       name = "io_netty_netty_common",
       visibility = ["//visibility:public"],
       exports = ["@io_netty_netty_common//jar"],
+  )
+
+
+  native.java_library(
+      name = "com_github_philippheuer_credentialmanager_credentialmanager",
+      visibility = ["//visibility:public"],
+      exports = ["@com_github_philippheuer_credentialmanager_credentialmanager//jar"],
+      runtime_deps = [
+          ":com_fasterxml_jackson_core_jackson_databind",
+          ":com_squareup_okhttp3_okhttp",
+          ":com_squareup_okio_okio",
+          ":org_apache_commons_commons_lang3",
+          ":org_slf4j_slf4j_api",
+      ],
   )
 
 
@@ -721,6 +771,16 @@ def generated_java_libraries():
           ":org_reactivestreams_reactive_streams",
           ":org_slf4j_slf4j_api",
           ":org_yaml_snakeyaml",
+      ],
+  )
+
+
+  native.java_library(
+      name = "com_squareup_okhttp3_okhttp",
+      visibility = ["//visibility:public"],
+      exports = ["@com_squareup_okhttp3_okhttp//jar"],
+      runtime_deps = [
+          ":com_squareup_okio_okio",
       ],
   )
 

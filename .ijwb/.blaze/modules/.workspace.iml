@@ -14,6 +14,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="libcom_github_twitch4j_twitch4j_eb40b9de" level="project" />
+    <orderEntry type="library" name="libcom_github_philippheuer_credentialmanager_credentialmanager_eb40b9de" level="project" />
+    <orderEntry type="library" name="credentialmanager-0.0.31-ijar_774c6b30" level="project" />
     <orderEntry type="library" name="twitch4j-v0.12.0-ijar_cdd12050" level="project" />
   </component>
 </module>
